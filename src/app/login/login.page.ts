@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Http } from '@capacitor-community/http';
 import { Preferences } from '@capacitor/preferences';
+import { Router } from '@angular/router';
 const TOKEN_KEY = 'admin';
 const USERNAME = 'admin';
 @Component({
@@ -16,6 +17,8 @@ export class LoginPage implements OnInit {
   constructor(
     private authService: AuthenticationService,
     private alertController: AlertController,
+    private router: Router,
+    
   ) { }
   ngOnInit() {
   }
@@ -36,9 +39,10 @@ export class LoginPage implements OnInit {
         if (data['data']['status_login'] == 'berhasil') {
           this.username = '';
           this.password = '';
-          localStorage.setItem(TOKEN_KEY, data['data']['token'] );
+          localStorage.setItem(TOKEN_KEY, data.data.token );
           localStorage.setItem(USERNAME, data['data']['username'] );
-          location.reload();
+          // location.reload();
+          this.router.navigateByUrl('/dashboard');
         } else {
           this.alertController.create({
             header: 'Notifikasi',

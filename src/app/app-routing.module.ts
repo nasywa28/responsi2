@@ -5,7 +5,7 @@ import { AutoLoginGuard } from './guards/auto-login.guard';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'folder/Inbox',
+    redirectTo: 'peminjaman',
     pathMatch: 'full'
   },
   {
